@@ -11,7 +11,12 @@ function computerPlays() {
 function humanPlays() {
     let choice = window.prompt("Rock, Paper, or Scissors?");
     let choiceLower = choice.toLowerCase();
-    return choiceLower.charAt(0).toUpperCase() + choiceLower.slice(1);
+
+    if (choiceLower === "rock" || choiceLower === "paper" || choiceLower === "scissors") {
+        return choiceLower.charAt(0).toUpperCase() + choiceLower.slice(1);
+    } else {
+        return humanPlays();
+    }
 }
 
 function scoreRound(playerSelection, computerSelection) {
@@ -41,21 +46,16 @@ function scoreRound(playerSelection, computerSelection) {
 function playRound() {
     let playerSelection = humanPlays();
     let computerSelection = computerPlays();
-
-    let youWon = `You won! ${playerSelection} beats ${computerSelection}`;
-    let youLost = `You lost! ${computerSelection} beats ${playerSelection}`;
-    let tie = `It's a tie! You both played ${playerSelection}`;
-
     let result = scoreRound(playerSelection, computerSelection);
 
     if (result === "tie") {
-        console.log(tie);
+        console.log(`It's a tie! You both played ${playerSelection}`);
         return playRound();
     } else if (result === "youWon") {
-        console.log(youWon);
+        console.log(`You won! ${playerSelection} beats ${computerSelection}`);
         return "youWon";
     } else if (result === "youLost") {
-        console.log(youLost);
+        console.log(`You lost! ${computerSelection} beats ${playerSelection}`);
         return "youLost";
     } else {
         console.log("Round ERROR");
@@ -65,6 +65,7 @@ function playRound() {
 function game(round) {
     let scorePlayer = 0;
     let scoreComputer = 0;
+    let wins = Math.floor((round / 2) + 1)
 
     for (i = 1; i <= round; i++) {
         let result = playRound();
@@ -76,9 +77,15 @@ function game(round) {
             console.log('SCORE ERROR');
         }
         console.log(`The score for round ${i} is Player: ${scorePlayer} Computer: ${scoreComputer}`);
+
+        if (scorePlayer === wins) {
+            console.log(`YOU WON!!! How does it feel to beat a machine?`);
+            break;
+        } else if (scoreComputer === wins) {
+            console.log(`Well, you lost, but don't feel bad, you're only human...`);
+            break;
+        }
     }
-    scorePlayer = 0;
-    scoreComputer = 0;
 }
 
 game(5);
