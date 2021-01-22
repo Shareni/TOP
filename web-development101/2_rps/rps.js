@@ -80,7 +80,7 @@ function game(round) {
             console.log(`YOU WON!!! How does it feel to beat a machine?`);
             break;
         } else if (scoreComputer === wins) {
-            console.log(`Well, you lost, but don't feel bad, you're only human...`);
+            console.log(`Well, you lost, but don't feel too bad, you're only human...`);
             break;
         }
     }
