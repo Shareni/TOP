@@ -8,56 +8,77 @@ function computerPlays() {
         return 'Scissors';
     }
 }
-
 function humanPlays() {
     let choice = window.prompt("Rock, Paper, or Scissors?");
     let choiceLower = choice.toLowerCase();
     return choiceLower.charAt(0).toUpperCase() + choiceLower.slice(1);
 }
 
-let scorePlayer = 0;
-let scoreComputer = 0;
-
-function playRound(playerSelection, computerSelection) {
-    let youWon = `You won! ${playerSelection} beats ${computerSelection}`;
-    let youLost = `You lost! ${computerSelection} beats ${playerSelection}`;
-
+function scoreRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        return `It's a tie! You both played ${playerSelection}`;
+        return "tie";
     } else if (playerSelection === 'Rock') {
         if (computerSelection === 'Scissors') {
-            scorePlayer++;
-            return youWon;
+            return "youWon";
         } else {
-            scoreComputer++;
-            return youLost;
+            return "youLost";
         }
     } else if (playerSelection === 'Paper') {
         if (computerSelection === 'Rock') {
-            scorePlayer++;
-            return youWon;
+            return "youWon";
         } else {
-            scoreComputer++;
-            return youLost;
+            return "youLost";
         }
     } else if (playerSelection === 'Scissors') {
         if (computerSelection === 'Paper') {
-            scorePlayer++;
-            return youWon;
+            return "youWon";
         } else {
-            scoreComputer++;
-            return youLost;
+            return "youLost";
         }
     }
 }
 
-function game(round) {
-    for (i = 1; i <= round; i++) {
-        console.log(`Round ${i}: ${playRound(humanPlays(), computerPlays())}`);
-        console.log(`The overall the score is ${scorePlayer} for the human, and ${scoreComputer} for the computer`)
+function playRound() {
+    let playerSelection = humanPlays();
+    let computerSelection = computerPlays();
+
+    let youWon = `You won! ${playerSelection} beats ${computerSelection}`;
+    let youLost = `You lost! ${computerSelection} beats ${playerSelection}`;
+    let tie = `It's a tie! You both played ${playerSelection}`;
+
+    let result = scoreRound(playerSelection, computerSelection);
+
+    if (result === "tie") {
+        console.log(tie);
+        return playRound();
+    } else if (result === "youWon") {
+        console.log(youWon);
+        return "youWon";
+    } else if (result === "youLost") {
+        console.log(youLost);
+        return "youLost";
+    } else {
+        console.log("Round ERROR");
     }
-    scoreComputer = 0;
+}
+
+function game(round) {
+    let scorePlayer = 0;
+    let scoreComputer = 0;
+
+    for (i = 1; i <= round; i++) {
+        let result = playRound();
+        if (result === "youWon") {
+            scorePlayer++;
+        } else if (result === "youLost") {
+            scoreComputer++;
+        } else {
+            console.log('SCORE ERROR');
+        }
+        console.log(`The score for round ${i} is Player: ${scorePlayer} Computer: ${scoreComputer}`);
+    }
     scorePlayer = 0;
+    scoreComputer = 0;
 }
 
 game(5);
