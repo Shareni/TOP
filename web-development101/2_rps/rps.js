@@ -8,6 +8,7 @@ function computerPlays() {
         return 'Scissors';
     }
 }
+
 function humanPlays() {
     let choice = window.prompt("Rock, Paper, or Scissors?");
     let choiceLower = choice.toLowerCase();
@@ -57,8 +58,6 @@ function playRound() {
     } else if (result === "youLost") {
         console.log(`You lost! ${computerSelection} beats ${playerSelection}`);
         return "youLost";
-    } else {
-        console.log("Round ERROR");
     }
 }
 
@@ -73,9 +72,8 @@ function game(round) {
             scorePlayer++;
         } else if (result === "youLost") {
             scoreComputer++;
-        } else {
-            console.log('SCORE ERROR');
         }
+
         console.log(`The score for round ${i} is Player: ${scorePlayer} Computer: ${scoreComputer}`);
 
         if (scorePlayer === wins) {
