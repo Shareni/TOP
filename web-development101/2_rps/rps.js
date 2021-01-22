@@ -4,7 +4,7 @@ function computerPlays() {
         return 'Rock';
     } else if (choice === 1) {
         return 'Paper';
-    } else if (choice === 2) {
+    } else {
         return 'Scissors';
     }
 }
@@ -28,8 +28,7 @@ function playRound(playerSelection, computerSelection) {
         if (computerSelection === 'Scissors') {
             scorePlayer++;
             return youWon;
-        }
-        else {
+        } else {
             scoreComputer++;
             return youLost;
         }
@@ -45,8 +44,7 @@ function playRound(playerSelection, computerSelection) {
         if (computerSelection === 'Paper') {
             scorePlayer++;
             return youWon;
-        }
-        else {
+        } else {
             scoreComputer++;
             return youLost;
         }
