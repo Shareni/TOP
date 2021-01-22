@@ -45,6 +45,9 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game(round) {
+    scorePlayer = 0;
+    scoreComputer = 0;
+    // TO DO: implement score tracking
     for (i = 1; i <= round; i++) {
         console.log(`Round ${i}: ${playRound(humanPlays(), computerPlays())}`);
     }
