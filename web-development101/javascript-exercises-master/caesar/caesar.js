@@ -38,7 +38,7 @@ const caesar = function(string, shiftFactor) {
         }
     }
 
-    var encryptedString = "";
+    let encryptedString = "";
     while (encryptedString.length < string.length) {
         let character = string[encryptedString.length];
         character = asciiEncoderDecoder(character);
