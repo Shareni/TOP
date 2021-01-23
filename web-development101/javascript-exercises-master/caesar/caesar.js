@@ -39,14 +39,12 @@ const caesar = function(string, shiftFactor) {
     }
 
     var encryptedString = "";
-    for (i = 0; i < string.length; i++) {
-        let character = string[i];
+    while (encryptedString.length < string.length) {
+        let character = string[encryptedString.length];
         character = asciiEncoderDecoder(character);
         character = sorter(character, shiftFactor);
         character = asciiEncoderDecoder(character);
         encryptedString = encryptedString + character;
-        console.log(character);
-        console.log(encryptedString);
     }
     return encryptedString;
 }
