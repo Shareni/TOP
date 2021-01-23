@@ -1,36 +1,47 @@
 const caesar = function(string, shiftFactor) {
-    function caesarise(character, shiftFactor) {
-        let letter = character.charCodeAt(0);
-        if (letter >= 65 && letter <= 90) {
-            letter = letter + (shiftFactor);
-            if (letter > 90) {
-                letter = letter - 90;
-                letter = 64 + letter;
-            } else if (letter < 65) {
-                letter = 65 - letter;
-                letter = 90 - letter;
+    function shifter(character, shiftFactor) {
+        let shiftyCharacter = "";
+        if (character >= 65 && character <= 90) {
+            shiftyCharacter = character + (shiftFactor);
+            if (shiftyCharacter > 90) {
+                shiftyCharacter = (64 + ((shiftyCharacter - 90) % 25))
+                return shiftyCharacter;
+            } else if (shiftyCharacter < 65) {
+                shiftyCharacter = 91 - ((90 - shiftyCharacter) % 25);
+                return shiftyCharacter;
+            } else {
+                return shiftyCharacter;
             }
-        } else if (letter >= 97 && letter <= 122) {
-            letter = letter + (shiftFactor);
-            if (letter > 122) {
-                letter = letter - 122;
-                letter = 96 + letter;
-            } else if (letter < 97) {
-                letter = 97 - letter;
-                letter = 122 - letter;
+        } if (character >= 97 && character <= 122) {
+            shiftyCharacter = character + (shiftFactor);
+            if (shiftyCharacter > 122) {
+                shiftyCharacter = (96 + ((shiftyCharacter - 122) % 25))
+                return shiftyCharacter;
+            } else if (shiftyCharacter < 97) {
+                shiftyCharacter = 123 - ((122 - shiftyCharacter) % 25);
+                return shiftyCharacter;
+            } else {
+                return shiftyCharacter;
             }
+        } else {
+            return character;
         }
-        return String.fromCharCode(letter);
     }
-    if (typeof (string) === "string") {
-        let result = "";
-        for (i = 0; i < string.length; i++) {
-            result = result + caesarise(string[i], shiftFactor)
+    function asciiEncoderDecoder(char) {
+        if (typeof (char) === "number") {
+            return String.fromCharCode(char);
+        } else if (typeof (char) === "string") {
+            return char.charCodeAt(0);
         }
-        return result;
-    } else {
-        return "ERROR";
     }
+    let encryptedString = "";
+    for (i = 0; i < string.length; i++) {
+        let character = string[i];
+        character = asciiEncoderDecoder(character);
+        character = shifter(character, shiftFactor);
+        character = asciiEncoderDecoder(character);
+        encryptedString = encryptedString + character;
+    }
+    return encryptedString;
 }
-
 module.exports = caesar
