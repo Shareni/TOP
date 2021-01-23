@@ -1,13 +1,13 @@
 const caesar = function(string, shiftFactor) {
-    function asciiEncoderDecoder(char) {
-        if (typeof (char) === "number") {
-            return String.fromCharCode(char);
-        } else if (typeof (char) === "string") {
-            return char.charCodeAt(0);
+    function asciiEncoderDecoder(character) {
+        if (typeof (character) === "number") {
+            return String.fromCharCode(character);
+        } else if (typeof (character) === "string") {
+            return character.charCodeAt(0);
         }
     }
     function shifter(character, shiftFactor, upperLimit, lowerLimit) {
-        shiftedLetter = character;
+        let shiftedLetter = character;
         if (shiftFactor > 0) {
             for (i = 0; i < shiftFactor; i++) {
                 shiftedLetter++;
@@ -15,6 +15,7 @@ const caesar = function(string, shiftFactor) {
                     shiftedLetter = lowerLimit;
                 }
             }
+            return shiftedLetter;
         } else if (shiftFactor < 0) {
             for (i = 0; i > shiftFactor; i--) {
                 shiftedLetter--;
@@ -22,25 +23,30 @@ const caesar = function(string, shiftFactor) {
                     shiftedLetter = upperLimit;
                 }
             }
+            return shiftedLetter;
+        } else {
+            return shiftedLetter;
         }
     }
     function sorter(character, shiftFactor) {
         if (character >= 65 && character <= 90) {
-            return shifter(character, shiftFactor, 65, 90);
+            return shifter(character, shiftFactor, 90, 65);
         } else if (character >= 97 && character <= 122) {
-            return shifter(character, shiftFactor, 97, 122);
+            return shifter(character, shiftFactor, 122, 97);
         } else {
             return character;
         }
     }
 
-    let encryptedString = "";
+    var encryptedString = "";
     for (i = 0; i < string.length; i++) {
         let character = string[i];
         character = asciiEncoderDecoder(character);
         character = sorter(character, shiftFactor);
         character = asciiEncoderDecoder(character);
         encryptedString = encryptedString + character;
+        console.log(character);
+        console.log(encryptedString);
     }
     return encryptedString;
 }
