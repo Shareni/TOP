@@ -1,5 +1,5 @@
 const caesar = function(string, shiftFactor) {
-    function asciiEncoderDecoder(character) {
+    function encodeDecodeAscii(character) {
         if (typeof (character) === "number") {
             return String.fromCharCode(character);
         } else if (typeof (character) === "string") {
@@ -41,9 +41,9 @@ const caesar = function(string, shiftFactor) {
     let encryptedString = "";
     while (encryptedString.length < string.length) {
         let character = string[encryptedString.length];
-        character = asciiEncoderDecoder(character);
+        character = encodeDecodeAscii(character);
         character = sorter(character, shiftFactor);
-        character = asciiEncoderDecoder(character);
+        character = encodeDecodeAscii(character);
         encryptedString = encryptedString + character;
     }
     return encryptedString;
