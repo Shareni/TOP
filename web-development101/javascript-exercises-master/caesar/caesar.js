@@ -28,7 +28,7 @@ const caesar = function(string, shiftFactor) {
             return shiftedLetter;
         }
     }
-    function sorter(character, shiftFactor) {   //needs a better name
+    function sorter(character, shiftFactor) {   // TODO: needs a better name
         if (character >= 65 && character <= 90) {   //if UPPERCASE
             return shifter(character, shiftFactor, 90, 65);
         } else if (character >= 97 && character <= 122) {   //else if lowercase
