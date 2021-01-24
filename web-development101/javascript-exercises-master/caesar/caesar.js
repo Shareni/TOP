@@ -38,14 +38,14 @@ const caesar = function(string, shiftFactor) {
         }
     }
 
-    let encryptedString = "";
-    while (encryptedString.length < string.length) {
-        let character = string[encryptedString.length];
+    let shiftedString = "";
+    while (shiftedString.length < string.length) {
+        let character = string[shiftedString.length];
         character = encodeDecodeAscii(character);
         character = sorter(character, shiftFactor);
         character = encodeDecodeAscii(character);
-        encryptedString = encryptedString + character;
+        shiftedString = shiftedString + character;
     }
-    return encryptedString;
+    return shiftedString;
 }
 module.exports = caesar
