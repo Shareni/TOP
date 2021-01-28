@@ -16,8 +16,7 @@ const removeFromArray = function(array) {
     let returnArray = [];
     for (let i = 0; i < arrayLength; i++) {
         let arrayElement = array.pop();
-        let isRemoved = checker(arrayElement, args);
-        if (isRemoved === false) {
+        if (checker(arrayElement, args) === false) {
             returnArray.unshift(arrayElement)
         }
 
